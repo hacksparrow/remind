@@ -1,0 +1,21 @@
+{
+  "name": "remind",
+  "version": "0.0.2",
+  "description": "Commandline-based reminder tool, distraction-free and straightforward.",
+  "bin": { "remind": "index.js" },
+  "preferGlobal": "true",
+  "author": "Hage Yaapa <captain@hacksparrow.com> (http://www.hacksparrow.com/)",
+  "repository": "git@github.com:hacksparrow/remind.git",
+  "keywords": [
+    "reminder",
+    "calendar",
+    "todo",
+    "alarm"
+  ],
+  "dependencies": {},
+  "engines": { "node": "*" },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hacksparrow/remind/issues"
+  }
+}
