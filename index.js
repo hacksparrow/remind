@@ -65,7 +65,7 @@ var check = setInterval(function() {
       if (error) { console.log(error); }
       // we need delay the file delete a bit, else the file does not open
       setTimeout(function() {
-        fs.unlinkSync(task_file_path);
+        if (fs.existsSync(task_file_path)) { fs.unlinkSync(task_file_path); }
         console.log('REMINDER: ' + task.toUpperCase() + '!\n');
         clearInterval(check);
       }, 500);

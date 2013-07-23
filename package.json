@@ -1,7 +1,7 @@
 {
   "name": "remind",
-  "version": "0.0.2",
-  "description": "Commandline-based reminder tool, distraction-free and straightforward.",
+  "version": "0.0.3",
+  "description": "Commandline-based reminder tool - distraction-free and straightforward.",
   "bin": { "remind": "index.js" },
   "preferGlobal": "true",
   "author": "Hage Yaapa <captain@hacksparrow.com> (http://www.hacksparrow.com/)",
@@ -12,7 +12,6 @@
     "todo",
     "alarm"
   ],
-  "dependencies": {},
   "engines": { "node": "*" },
   "license": "MIT",
   "bugs": {
