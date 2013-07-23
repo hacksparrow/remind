@@ -1,7 +1,7 @@
 remind
 ======
 
-**remind** is a distraction-free and straightforward reminder tool specially created for software developers. Instead of using fancy GUI-based reminders, just type in a reminder task on the commandline and forget about. When the time comes, your reminder pops up in the default text editor on your system. How cool is that?
+**remind** is a distraction-free and straightforward reminder tool specially created for software developers. Instead of using fancy GUI-based reminders, just type in the task to be reminded on the commandline and forget about it. When the time comes, your reminder pops up in the default text editor on your system. How cool is that?
 
 ## Installation
 
