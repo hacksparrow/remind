@@ -63,11 +63,13 @@ var check = setInterval(function() {
     var command = 'open ' + task_file_path;
     child = exec(command, function(error, stdout, stderr) {
       if (error) { console.log(error); }
+      // stop the time checker
+      clearInterval(check);
       // we need delay the file delete a bit, else the file does not open
       setTimeout(function() {
         if (fs.existsSync(task_file_path)) { fs.unlinkSync(task_file_path); }
-        console.log('REMINDER: ' + task.toUpperCase() + '!\n');
-        clearInterval(check);
+        console.log('\n');
+        
       }, 500);
       
     });
