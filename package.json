@@ -1,6 +1,6 @@
 {
   "name": "remind",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Commandline-based reminder tool - distraction-free and straightforward.",
   "bin": { "remind": "index.js" },
   "preferGlobal": "true",

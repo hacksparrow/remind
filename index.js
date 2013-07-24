@@ -6,12 +6,15 @@ var exec = require('child_process').exec;
 var child;
 var EOL = os.EOL;
 
-var args = process.argv.splice(2);
-if (args.length < 2) {
+var exit_with_info = function() {
   console.log(EOL + 'Usage: remind <time> <task>');
-  console.log('Example: remind 5s Update Node.js', EOL);
+  console.log('Example: remind 5s Update Node.js');
+  console.log('Example: remind 5:30pm Call up the dealer', EOL);
   return;
-}
+};
+
+var args = process.argv.splice(2);
+if (args.length < 2) { exit_with_info(); }
 
 var time = args.shift();
 var task = args.join(' ');
@@ -20,7 +23,11 @@ var remind_at = Date.now();
 
 // time format can be like 12:30pm, 5:25am, :10 (10 mins from now), :30 (30 mins from now)
 if (time.indexOf(':') > -1) {
-  var hms = time.split(':');
+
+  var hour, minute, remind_time;
+
+  // some may type AM/PM, so ...
+  var hms = time.toLowerCase().split(':');
   var today = new Date();
 
   if (hms.length == 2) {
@@ -30,28 +37,21 @@ if (time.indexOf(':') > -1) {
       minute = today.getMinutes() + parseInt(hms.shift());
     }
     else {
-      if (time.indexOf('am') != -1 && hour > 11) {
-        hour -= 12;
-      }
-      else if (time.indexOf('pm') != -1 && hour < 12) {
-        hour += 12;
-      }
+      if (time.indexOf('am') != -1 && hour > 11) { hour -= 12; }
+      else if (time.indexOf('pm') != -1 && hour < 12) { hour += 12; }
       minute = parseInt(hms.shift());
     }
+
     remind_time = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour, minute, 0, 0);
     
+    // user is probably drunk and is trying to set a reminder in the past
     if (remind_time < remind_at) {
-      console.log('Too late to remind.');
+      console.log(EOL + 'Time travelling module not ready, yet.' + EOL);
       return;
     }
     remind_at = remind_time;
   }
-  else {
-    console.log('Not supported yet');
-    console.log(EOL + 'Usage: remind <time> <task>');
-    console.log('Example: remind 5s Update Node.js', EOL);
-    return;
-  }
+  else { exit_with_info(); }
 }
 // time format can also be like 1h30m, 45m5s, 59s etc. 
 else {
