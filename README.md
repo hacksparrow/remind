@@ -33,6 +33,22 @@ Remind in 30 minutes:
     -------------------------
     Turn off the stove
 
+Remind at 11:45am:
+
+    $ remind 11:45am Start testing
+    -------------------------
+    Wed Jul 24 2013, 11:45:00
+    -------------------------
+    Start testing
+
+Remind at 5:30pm:
+
+    $ remind 5:30pm Restart the server
+    -------------------------
+    Wed Jul 24 2013, 17:30:00
+    -------------------------
+    Restart the server
+
 ## Note
 
 1. Edge cases not handled, so don't screw yourself
