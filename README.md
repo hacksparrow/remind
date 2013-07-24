@@ -11,7 +11,8 @@ remind
 
     $ remind <time> <task>
 
-**time** is in `NhNmNs` format. Eg: `1h30m`, `30m5s`, `15m`, `10s`, etc.   
+**time** is in `NhNmNs` format. Eg: `1h30m`, `30m5s`, `15m`, `10s`, etc.
+**time** can also be in `HH:mmam/pm` format. Eg: `5:25pm`, `6:20am`, etc.
 **task** a description of whatever you would like to remind yourself with.
 
 ## Example
