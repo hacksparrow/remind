@@ -5,7 +5,7 @@ remind
 
 ## Installation
 
-    $ [sudo] npm install remind
+    $ [sudo] npm install remind -g
 
 ## Usage
 
