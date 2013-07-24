@@ -34,16 +34,14 @@ Remind in 30 minutes:
 
 ## Note
 
-1. Currently tested on Mac OS X only
-2. Edge cases not handled, so don't screw yourself
-3. Reminders are stored in the `/tmp/` dir
-4. Best used for short duration reminders
+1. Edge cases not handled, so don't screw yourself
+2. Reminders are stored in the system's temporary directory
+3. Best used for short duration reminders
 
 ## To-Do
 
 1. Support alternate time format of `hh:mm`. Eg: `2:30pm`, `21:15`, `:30`, etc.
 2. Run in the background and handle multiple reminders from a single interface
-3. Support Linux and Windows
 
 ## Testimony
 
