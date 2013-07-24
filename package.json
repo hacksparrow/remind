@@ -1,6 +1,6 @@
 {
   "name": "remind",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Commandline-based reminder tool - distraction-free and straightforward.",
   "bin": { "remind": "index.js" },
   "preferGlobal": "true",
@@ -12,7 +12,7 @@
     "todo",
     "alarm"
   ],
-  "engines": { "node": "*" },
+  "engines": { "node": "0.10.*" },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hacksparrow/remind/issues"
