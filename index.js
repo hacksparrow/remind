@@ -44,9 +44,15 @@ else {
 }
 
 // we will keep the tasks reminder in the tmp dir, for now
-var tmp_dir = os.tmpdir();
-var remind_dir = '/remind-js/';
-var remind_dir_path = tmp_dir + remind_dir;
+var remind_dir = 'remind-js/';
+var remind_dir_path = '';
+if (os.platform() == 'darwin' || os.platform() == 'linux') {
+  remind_dir_path = '/tmp/' + remind_dir;
+}
+else {
+  remind_dir_path = os.tmpdir() + remind_dir;
+}
+
 var task_file_path = remind_dir_path + Date.now() + '.txt';
 
 //create remind dir if it does not exist yet
