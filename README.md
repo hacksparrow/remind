@@ -15,7 +15,7 @@ remind
 **time** can also be in `HH:mmam/pm` format. Eg: `5:25pm`, `6:20am`, etc.  
 **task** a description of whatever you would like to remind yourself with.
 
-## Example
+## Examples
 
 Remind after 1 hours, 30 minutes:
 
@@ -57,8 +57,7 @@ Remind at 5:30pm:
 
 ## To-Do
 
-1. Support alternate time format of `hh:mm`. Eg: `2:30pm`, `21:15`, `:30`, etc.
-2. Run in the background and handle multiple reminders from a single interface
+1. Run in the background and handle multiple reminders from a single interface
 
 ## Testimony
 
