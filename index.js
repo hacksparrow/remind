@@ -5,12 +5,10 @@ var os = require('os');
 var exec = require('child_process').exec;
 var child;
 var EOL = os.EOL;
-var pack = require('./package.json');
 
 var args = process.argv.splice(2);
 if (args.length < 2) {
-  console.log(EOL + pack.name + ' v' + pack.version + EOL);
-  console.log('Usage: remind <time> <task>');
+  console.log(EOL + 'Usage: remind <time> <task>');
   console.log('Example: remind 5s Update Node.js', EOL);
   return;
 }
@@ -22,10 +20,38 @@ var remind_at = Date.now();
 
 // time format can be like 12:30pm, 5:25am, :10 (10 mins from now), :30 (30 mins from now)
 if (time.indexOf(':') > -1) {
-  console.log('Not supported yet');
-  console.log(EOL + 'Usage: remind <time> <task>');
-  console.log('Example: remind 5s Update Node.js', EOL);
-  return;
+  var hms = time.split(':');
+  var today = new Date();
+
+  if (hms.length == 2) {
+    var hour = parseInt(hms.shift());
+    if (isNaN(hour)) {
+      hour = today.getHours();
+      minute = today.getMinutes() + parseInt(hms.shift());
+    }
+    else {
+      if (time.indexOf('am') != -1 && hour > 11) {
+        hour -= 12;
+      }
+      else if (time.indexOf('pm') != -1 && hour < 12) {
+        hour += 12;
+      }
+      minute = parseInt(hms.shift());
+    }
+    remind_time = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hour, minute, 0, 0);
+    
+    if (remind_time < remind_at) {
+      console.log('Too late to remind.');
+      return;
+    }
+    remind_at = remind_time;
+  }
+  else {
+    console.log('Not supported yet');
+    console.log(EOL + 'Usage: remind <time> <task>');
+    console.log('Example: remind 5s Update Node.js', EOL);
+    return;
+  }
 }
 // time format can also be like 1h30m, 45m5s, 59s etc. 
 else {
@@ -46,7 +72,7 @@ else {
 }
 
 // we will keep the tasks reminder in the tmp dir, for now
-var tmp_dir = os.tmpDir();
+var tmp_dir = os.tmpdir();
 var remind_dir = 'remind-js/';
 
 // having to do this because mac os x leopard is having some issues
@@ -84,7 +110,7 @@ var check = setInterval(function() {
       if (error) { console.log(error); }
       // stop the time checker
       clearInterval(check);
-      // we need to delay the file delete a bit, else the file does not open sometimes - race condition
+      // we need to delay the file delete a bit, else the file does not open sometimes
       setTimeout(function() {
         if (fs.existsSync(task_file_path)) { fs.unlinkSync(task_file_path); }
         console.log(EOL);
