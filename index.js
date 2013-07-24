@@ -5,10 +5,12 @@ var os = require('os');
 var exec = require('child_process').exec;
 var child;
 var EOL = os.EOL;
+var pack = require('./package.json');
 
 var args = process.argv.splice(2);
 if (args.length < 2) {
-  console.log(EOL + 'Usage: remind <time> <task>');
+  console.log(EOL + pack.name + ' v' + pack.version + EOL);
+  console.log('Usage: remind <time> <task>');
   console.log('Example: remind 5s Update Node.js', EOL);
   return;
 }
@@ -44,7 +46,7 @@ else {
 }
 
 // we will keep the tasks reminder in the tmp dir, for now
-var tmp_dir = os.tmpdir();
+var tmp_dir = os.tmpDir();
 var remind_dir = 'remind-js/';
 
 // having to do this because mac os x leopard is having some issues
@@ -82,7 +84,7 @@ var check = setInterval(function() {
       if (error) { console.log(error); }
       // stop the time checker
       clearInterval(check);
-      // we need to delay the file delete a bit, else the file does not open sometimes
+      // we need to delay the file delete a bit, else the file does not open sometimes - race condition
       setTimeout(function() {
         if (fs.existsSync(task_file_path)) { fs.unlinkSync(task_file_path); }
         console.log(EOL);
